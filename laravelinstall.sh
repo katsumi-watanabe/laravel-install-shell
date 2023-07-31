@@ -65,6 +65,7 @@ git commit -m"Laravel install"
 # Laravelのconfig書き換え
 gsed -i "s|'timezone' => 'UTC',|'timezone' => 'Asia/Tokyo',|" config/app.php
 gsed -i "s|'locale' => '.*',|'locale' => 'ja',|" config/app.php
+gsed -i "s|'days' => 14,|'days' => 180,|" config/logging.php
 gsed -i "s|// protected $namespace|protected $namespace|" app/Providers/RouteServiceProvider.php
 git add .
 git commit -m"Set locale and route configs"
@@ -74,6 +75,7 @@ gsed -i "s|APP_URL=.*|APP_URL=http://localhost:8000|" .env
 gsed -i "s|DB_DATABASE=.*|DB_DATABASE=$DB_NAME|" .env
 gsed -i "s|DB_USERNAME=.*|DB_USERNAME=$DB_USER|" .env
 gsed -i "s|DB_PASSWORD=.*|DB_PASSWORD=$DB_PASSWORD|" .env
+gsed -i "s|LOG_CHANNEL=stack|LOG_CHANNEL=daily|" .env
 
 gsed -i '$ a\\' .env
 gsed -i "$ aBASICAUTH_USER=\"alpha\"" .env
